@@ -1,0 +1,19 @@
+{
+    "name": "neutomic/skeleton",
+    "description": "A minimal Neutomic project recommended to create simple web applications",
+    "type": "project",
+    "require": {
+        "php": "^8.3",
+        "neutomic/neutomic": "dev-main",
+        "twig/twig": "^4.0",
+        "amphp/postgres": "2.x-dev",
+        "amphp/redis": "2.x-dev"
+    },
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "App\\": "src/"
+        }
+    },
+    "minimum-stability": "dev"
+}

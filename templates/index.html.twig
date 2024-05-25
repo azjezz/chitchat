@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="uk-grid-small uk-child-width-1-2@s" uk-grid>
+        <div class="uk-width-1-1">
+            <div class="uk-card uk-card-default uk-card-body">
+                <p>Enter your username to join the fun!</p>
+                <form method="POST" action="/login">
+                    <div class="uk-grid-small uk-child-width-1-3" uk-grid>
+                        <div class="uk-width-2-3">
+                            <input class="uk-input uk-width-1-1 uk-form-large" type="text" placeholder="username" aria-label="Username" name="username">
+                        </div>
+                        <div>
+                            <button class="uk-button uk-button-secondary uk-button-large uk-width-1-1">Login</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}

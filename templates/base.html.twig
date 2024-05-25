@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Welcome to Neutomic</title>
+        <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.21.4/dist/css/uikit.min.css" />
+    </head>
+    <body style="min-height: 100vh">
+        <header class="uk-box-shadow-small" style="background-color: white">
+            <div class="uk-container uk-container-expand">
+                <nav class="uk-navbar" id="navbar" data-uk-navbar>
+                    <div class="uk-navbar-left">
+                        <a class="uk-navbar-item uk-logo" href="/">CHITCHAT</a>
+                    </div>
+
+                    <div class="uk-navbar-right">
+                        {% if username|default(null) %}
+                            <ul class="uk-navbar-nav uk-visible@m">
+                                <li><a href="/logout">Logout</a></li>
+                            </ul>
+                        {% endif %}
+                        <div class="uk-navbar-item">
+                            <a href="https://github.com/azjezz/chitchat" class="uk-button uk-button-secondary uk-visible@m">GitHub</a>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+        </header>
+
+
+        <section class="uk-section uk-section-muted" style="min-height: 80vh">
+            <div class="uk-container uk-container-small">
+                {% block body %}{% endblock %}
+            </div>
+        </section>
+
+        <footer class="uk-section uk-section-secondary uk-padding-small">
+            <div class="uk-container uk-container-expand uk-text-center">
+                <div class="uk-grid uk-child-width-1-1" data-uk-grid>
+                    <div>
+                        <p>Crafted with ❤️ by <a href="https://github.com/neutomic" target="_blank">Neutomic</a></p>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+        <script src="https://cdn.jsdelivr.net/npm/uikit@3.21.4/dist/js/uikit.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/uikit@3.21.4/dist/js/uikit-icons.min.js"></script>
+    </body>
+</html>

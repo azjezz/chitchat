@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="uk-card uk-card-default uk-card-body">
+        <h2 class="uk-card-title">Chat Messages</h2>
+        <div id="chat-container" class="uk-flex uk-flex-column-reverse uk-overflow-auto uk-height-large uk-height-max-large">
+
+        </div>
+
+        <form class="uk-form-stacked uk-margin-top" id="chat-form">
+            <div class="uk-margin">
+                <textarea class="uk-textarea" rows="2" placeholder="Message" aria-label="Message" name="message"></textarea>
+            </div>
+
+            <div class="uk-margin uk-text-right">
+                <button class="uk-button uk-button-primary">Send</button>
+            </div>
+        </form>
+    </div>
+
+    <script src="/script/chat.js"></script>
+{% endblock %}

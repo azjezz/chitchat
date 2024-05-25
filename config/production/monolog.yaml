@@ -1,0 +1,6 @@
+monolog:
+    handlers:
+        stderr:
+            type: stderr
+            level: warning
+            formatter: monolog.formatter.line

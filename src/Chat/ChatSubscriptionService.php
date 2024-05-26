@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\Chat;
 
 use Amp\Pipeline\ConcurrentIterator;
-use Amp\Pipeline\Pipeline;
 use Amp\Pipeline\Queue;
 use Amp\Sql\SqlException;
 use Neu\Component\Database\DatabaseInterface;
@@ -78,16 +77,16 @@ final class ChatSubscriptionService
     /**
      * Get an iterator for the given subscriber ID.
      *
-     * @return Pipeline<array{username: string, message: string}>|null The iterator or null if the subscriber does not exist.
+     * @return ConcurrentIterator<array{username: string, message: string}>|null The iterator or null if the subscriber does not exist.
      */
-    public function getPipeline(int $id): ?Pipeline
+    public function getPipeline(int $id): ?ConcurrentIterator
     {
         // Start listening if not already started.
         $this->listen();
 
         $source = $this->subscribers[$id] ?? null;
 
-        return $source?->pipe();
+        return $source?->iterate();
     }
 
     /**

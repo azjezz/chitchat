@@ -4,19 +4,19 @@ declare(strict_types=1);
 
 namespace App\Handler;
 
-use Amp\ByteStream\ReadableIterableStream;
 use App\Chat\ChatSubscriptionService;
 use Neu\Component\Http\Exception\HttpException;
-use Neu\Component\Http\Message\Body;
 use Neu\Component\Http\Message\Method;
 use Neu\Component\Http\Message\RequestInterface;
 use Neu\Component\Http\Message\ResponseInterface;
-use Neu\Component\Http\Message\Response;
 use Neu\Component\Http\Message\StatusCode;
 use Neu\Component\Http\Router\Route\Route;
 use Neu\Component\Http\Runtime\Context;
 use Neu\Component\Http\Runtime\Handler\HandlerInterface;
+use Neu\Component\Http\ServerSentEvent\Event;
+use Neu\Component\Http\ServerSentEvent\EventStream;
 use Psl\Json;
+use Revolt\EventLoop;
 
 #[Route(name: 'subscribe', path: '/subscribe', methods: [Method::Get])]
 final readonly class SubscribeHandler implements HandlerInterface
@@ -31,23 +31,25 @@ final readonly class SubscribeHandler implements HandlerInterface
             throw new HttpException(StatusCode::Unauthorized);
         }
 
-        $id = $this->subscription->subscribe();
+        $stream = EventStream::forContext($context);
 
-        $context->getClient()->onClose(function() use ($id): void {
-            $this->subscription->unsubscribe($id);
+        EventLoop::queue(function() use($stream): void {
+            $id = $this->subscription->subscribe();
+
+            foreach ($this->subscription->getPipeline($id) as $data) {
+                if ($stream->isClosed()) {
+                    $this->subscription->unsubscribe($id);
+
+                    return;
+                }
+
+                $stream->send(new Event(
+                    type: 'message',
+                    data: Json\encode($data)
+                ));
+            }
         });
 
-        $stream = new ReadableIterableStream(
-            $this->subscription->getPipeline($id)->map(static function($data) {
-                return 'event: message' . "\n" . 'data: ' . Json\encode($data) . "\n\n";
-            })->getIterator()
-        );
-
-        return Response::fromStatusCode(StatusCode::OK)
-            ->withHeader('Content-Type', 'text/event-stream')
-            ->withHeader('Cache-Control', 'no-cache')
-            ->withHeader('Connection', 'keep-alive')
-            ->withBody(Body::fromReadableStream(stream: $stream))
-        ;
+        return $stream->getResponse();
     }
 }

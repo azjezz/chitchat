@@ -2370,12 +2370,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/neutomic/neutomic.git",
-                "reference": "0dfaf02a176770142c8a783d57ce3abff97145c7"
+                "reference": "81df65ee37ae3b4b9eda0c36f5af88ff8477e680"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/neutomic/neutomic/zipball/0dfaf02a176770142c8a783d57ce3abff97145c7",
-                "reference": "0dfaf02a176770142c8a783d57ce3abff97145c7",
+                "url": "https://api.github.com/repos/neutomic/neutomic/zipball/81df65ee37ae3b4b9eda0c36f5af88ff8477e680",
+                "reference": "81df65ee37ae3b4b9eda0c36f5af88ff8477e680",
                 "shasum": ""
             },
             "require": {
@@ -2460,7 +2460,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2024-05-25T13:45:15+00:00"
+            "time": "2024-05-26T16:14:17+00:00"
         },
         {
             "name": "nikic/php-parser",

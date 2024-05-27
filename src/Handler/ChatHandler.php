@@ -23,11 +23,12 @@ final readonly class ChatHandler implements HandlerInterface
 
     public function handle(Context $context, RequestInterface $request): ResponseInterface
     {
-        if (!$request->getSession()->has('username')) {
+        $username = $request->getQueryParameter('username');
+        if (null === $username) {
             return Response\redirect('/', statusCode: StatusCode::SeeOther);
         }
 
-        $username = $request->getSession()->get('username');
+        $username = $username[0];
 
         $content = $this->twig->render('chat.html.twig', [
             'username' => $username,

@@ -1,6 +1,0 @@
-cache:
-    default: main_store
-    stores:
-        main_store:
-            driver: redis
-            uri: redis://localhost:6379

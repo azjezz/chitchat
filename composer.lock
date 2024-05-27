@@ -2370,12 +2370,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/neutomic/neutomic.git",
-                "reference": "81df65ee37ae3b4b9eda0c36f5af88ff8477e680"
+                "reference": "aa8d1ac06b25304297296079a8ce641f52b8e712"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/neutomic/neutomic/zipball/81df65ee37ae3b4b9eda0c36f5af88ff8477e680",
-                "reference": "81df65ee37ae3b4b9eda0c36f5af88ff8477e680",
+                "url": "https://api.github.com/repos/neutomic/neutomic/zipball/aa8d1ac06b25304297296079a8ce641f52b8e712",
+                "reference": "aa8d1ac06b25304297296079a8ce641f52b8e712",
                 "shasum": ""
             },
             "require": {
@@ -2390,7 +2390,6 @@
                 "amphp/sql-common": "^2.0",
                 "azjezz/assess": "^1.0.2",
                 "azjezz/psl": "dev-next as 3.0.0",
-                "ext-json": "*",
                 "ext-mbstring": "*",
                 "ext-pcntl": "*",
                 "monolog/monolog": "^3.6",
@@ -2460,7 +2459,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2024-05-26T16:14:17+00:00"
+            "time": "2024-05-27T05:18:01+00:00"
         },
         {
             "name": "nikic/php-parser",

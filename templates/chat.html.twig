@@ -9,6 +9,7 @@
 
         <form class="uk-form-stacked uk-margin-top" id="chat-form">
             <div class="uk-margin">
+                <input type="hidden" name="username" value="{{ username }}">
                 <textarea class="uk-textarea" rows="2" placeholder="Message" aria-label="Message" name="message"></textarea>
             </div>
 
@@ -17,6 +18,10 @@
             </div>
         </form>
     </div>
+
+    <script>
+        const username = "{{ username }}";
+    </script>
 
     <script src="/script/chat.js"></script>
 {% endblock %}

@@ -1,6 +1,7 @@
 document.getElementById('chat-form').addEventListener('submit', (event) => {
     event.preventDefault();
 
+    const username = document.querySelector('input[name="username"]').value;
     const message = document.querySelector('textarea[name="message"]').value;
 
     fetch('/message', {
@@ -8,7 +9,7 @@ document.getElementById('chat-form').addEventListener('submit', (event) => {
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded'
         },
-        body: new URLSearchParams({ message })
+        body: new URLSearchParams({ username, message })
     }).then(response => {
         if (response.ok) {
             document.querySelector('textarea[name="message"]').value = '';
@@ -30,13 +31,17 @@ textarea.addEventListener('keydown', (event) => {
 const eventSource = new EventSource('/subscribe');
 
 eventSource.addEventListener('message', (event) => {
+    console.log('received message: ' + event.data);
+
     const data = JSON.parse(event.data);
     const chatContainer = document.getElementById('chat-container');
     const messageElement = document.createElement('div');
     if (data.username === 'system') {
         messageElement.className = 'uk-alert-danger';
-    } else {
+    } else if (data.username === username) {
         messageElement.className = 'uk-alert-primary';
+    } else {
+        messageElement.className = 'uk-alert-secondary';
     }
 
     messageElement.setAttribute('uk-alert', '');
@@ -48,8 +53,4 @@ eventSource.addEventListener('message', (event) => {
     requestAnimationFrame(() => {
         chatContainer.scrollTop = 0;
     });
-});
-
-eventSource.addEventListener('end', (event) => {
-    eventSource.close();
 });

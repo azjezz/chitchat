@@ -14,12 +14,12 @@ use Neu\Component\Http\Message\RequestInterface;
 use Neu\Component\Http\Message\Response;
 use Neu\Component\Http\Message\ResponseInterface;
 use Neu\Component\Http\Message\StatusCode;
-use Neu\Component\Http\Router\Route\Route;
+use Neu\Component\Http\Router\Route;
 use Neu\Component\Http\Runtime\Context;
 use Neu\Component\Http\Runtime\Handler\HandlerInterface;
 use Psl\Html;
 
-#[Route(name: 'message', path: '/message', methods: [Method::Post])]
+#[Route(name: 'message', pattern: '/message', methods: [Method::Post])]
 final readonly class MessageHandler implements HandlerInterface
 {
     use SingleFieldFormConvenienceTrait;

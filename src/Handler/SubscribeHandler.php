@@ -5,21 +5,18 @@ declare(strict_types=1);
 namespace App\Handler;
 
 use Neu\Component\Broadcast\HubInterface;
-use Neu\Component\Broadcast\Message;
-use Neu\Component\Broadcast\Subscription;
 use Neu\Component\Http\Message\Method;
 use Neu\Component\Http\Message\RequestInterface;
 use Neu\Component\Http\Message\ResponseInterface;
-use Neu\Component\Http\Router\Route\Route;
+use Neu\Component\Http\Router\Route;
 use Neu\Component\Http\Runtime\Context;
 use Neu\Component\Http\Runtime\Handler\HandlerInterface;
 use Neu\Component\Http\ServerSentEvent\Event;
 use Neu\Component\Http\ServerSentEvent\EventStream;
 use Psl\Async;
 use Psl\Json;
-use Revolt\EventLoop;
 
-#[Route(name: 'subscribe', path: '/subscribe', methods: [Method::Get])]
+#[Route(name: 'subscribe', pattern: '/subscribe', methods: [Method::Get])]
 final readonly class SubscribeHandler implements HandlerInterface
 {
     public function __construct(

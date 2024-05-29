@@ -9,12 +9,12 @@ use Neu\Component\Http\Message\RequestInterface;
 use Neu\Component\Http\Message\ResponseInterface;
 use Neu\Component\Http\Message\Response;
 use Neu\Component\Http\Message\StatusCode;
-use Neu\Component\Http\Router\Route\Route;
+use Neu\Component\Http\Router\Route;
 use Neu\Component\Http\Runtime\Context;
 use Neu\Component\Http\Runtime\Handler\HandlerInterface;
 use Twig\Environment;
 
-#[Route(name: 'chat', path: '/chat', methods: [Method::Get])]
+#[Route(name: 'chat', pattern: '/chat', methods: [Method::Get])]
 final readonly class ChatHandler implements HandlerInterface
 {
     public function __construct(

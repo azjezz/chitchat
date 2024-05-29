@@ -17,13 +17,13 @@ This will install all the dependencies required to run the project.
 To run the project, run the following command:
 
 ```bash
-docker-compose up -d
+php src/main.php http:server:cluster
 ```
 
-Then, run the following command to start the server:
+Run the project in production mode by running the following command:
 
 ```bash
-php src/main.php http:server:cluster
+PROJECT_MODE=production PROJECT_DEBUG=0 php src/main.php http:server:cluster
 ```
 
 You can now access the project at `http://localhost:8080`.

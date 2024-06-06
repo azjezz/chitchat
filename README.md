@@ -7,7 +7,7 @@ A simple live chat application built using Neutomic.
 To get started, clone this repository and run the following command:
 
 ```bash
-compser install
+composer install
 ```
 
 This will install all the dependencies required to run the project.
